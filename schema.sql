@@ -12,8 +12,8 @@ CREATE TABLE applications (
 
 CREATE TABLE users (
   id serial primary key,
-  username varchar(128) not null,
-  password varchar(128) not null,
+  username character varying(255) not null,
+  password character varying(255) not null,
   name varchar(64) not null,
   email varchar(256) not null,
   admin boolean default false
