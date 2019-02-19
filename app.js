@@ -12,7 +12,7 @@ const app = express();
 /* todo sækja stillingar úr env */
 
 const {
-  PORT: port = 3000,
+  PORT: port = process.env.PORT || 3000,
   SESSION_SECRET: sessionSecret = 'notaðu .env!',
 } = process.env;
 
@@ -72,6 +72,6 @@ app.use(errorHandler);
 const hostname = '127.0.0.1';
 //const port = 3000;
 
-app.listen(port, hostname, () => {
+app.listen(port, () => {
   console.info(`Server running at http://${hostname}:${port}/`);
 });
