@@ -3,19 +3,10 @@ const express = require('express');
 const { check, validationResult } = require('express-validator/check');
 const { sanitize } = require('express-validator/filter');
 
-const { insert } = require('./db');
+const { insertAppl } = require('./db');
+const { catchErrors } = require('./utils');
 
 const router = express.Router();
-
-/**
- * Higher-order fall sem umlykur async middleware með villumeðhöndlun.
- *
- * @param {function} fn Middleware sem grípa á villur fyrir
- * @returns {function} Middleware með villumeðhöndlun
- */
-function catchErrors(fn) {
-  return (req, res, next) => fn(req, res, next).catch(next);
-}
 
 /**
  * Hjálparfall sem XSS hreinsar reit í formi eftir heiti.
@@ -175,7 +166,7 @@ async function formPost(req, res) {
     job,
   };
 
-  await insert(data);
+  await insertAppl(data);
 
   return res.redirect('/thanks');
 }

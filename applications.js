@@ -1,18 +1,9 @@
 const express = require('express');
 
-const { select, update, deleteRow } = require('./db');
+const { selectAppl, updateAppl, deleteRow } = require('./db');
+const { catchErrors } = require('./utils');
 
 const router = express.Router();
-
-/**
- * Higher-order fall sem umlykur async middleware með villumeðhöndlun.
- *
- * @param {function} fn Middleware sem grípa á villur fyrir
- * @returns {function} Middleware með villumeðhöndlun
- */
-function catchErrors(fn) {
-  return (req, res, next) => fn(req, res, next).catch(next);
-}
 
 /**
  * Ósamstilltur route handler fyrir umsóknarlista.
@@ -22,7 +13,7 @@ function catchErrors(fn) {
  * @returns {string} Lista af umsóknum
  */
 async function applications(req, res) {
-  const list = await select();
+  const list = await selectAppl();
 
   const data = {
     title: 'Umsóknir',
@@ -42,7 +33,7 @@ async function applications(req, res) {
 async function processApplication(req, res) {
   const { id } = req.body;
 
-  await update(id);
+  await updateAppl(id);
 
   return res.redirect('/applications');
 }

@@ -18,7 +18,7 @@ async function query(q, values = []) {
   }
 }
 
-async function insert(data) {
+async function insertAppl(data) {
   const q = `
 INSERT INTO applications
 (name, email, phone, text, job)
@@ -29,31 +29,60 @@ VALUES
   return query(q, values);
 }
 
-async function select() {
+async function selectAppl() {
   const result = await query('SELECT * FROM applications ORDER BY id');
 
   return result.rows;
 }
 
-async function update(id) {
+async function updateAppl(id) {
   const q = `
 UPDATE applications
 SET processed = true, updated = current_timestamp
 WHERE id = $1`;
 
-  return query(q, id);
+  return query(q, [id]);
 }
 
 async function deleteRow(id) {
   const q = 'DELETE FROM applications WHERE id = $1';
 
-  return query(q, id);
+  return query(q, [id]);
+}
+
+async function insertUsr(data) {
+  const q = `
+INSERT INTO users
+(name, email, username, password)
+VALUES
+($1, $2, $3, $4)`;
+  const values = [data.name, data.email, data.username, data.hash];
+
+  return query(q, values);
+}
+
+async function selectUsr() {
+  const result = await query('SELECT * FROM users ORDER BY id');
+
+  return result.rows;
+}
+
+async function updateUsr(id) {
+  const q = `
+UPDATE users
+SET admin = true
+WHERE id = $1`;
+
+  return query(q, [id]);
 }
 
 module.exports = {
   query,
-  insert,
-  select,
-  update,
-  deleteRow, // delete er frátekið orð
+  insertAppl,
+  selectAppl,
+  updateAppl,
+  deleteRow,
+  insertUsr,
+  selectUsr,
+  updateUsr,
 };

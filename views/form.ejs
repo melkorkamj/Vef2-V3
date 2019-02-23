@@ -1,6 +1,6 @@
 <%- include('header') -%>
 
-<h1>Atvinnuumsókn</h1>
+<h1><%= (typeof title != "undefined" ? title : "") %></h1>
 
 <form method="post" action="/">
   <div class="field<%= locals.isInvalid('name', errors) ?  ' field--invalid' : '' %>">
@@ -41,6 +41,10 @@
   <% } %>
 
   <button>Senda umsókn</button>
+</form>
+
+<form method="post" action="/admin">
+  <button>Umsóknir</button>
 </form>
 
 <%- include('footer') -%>

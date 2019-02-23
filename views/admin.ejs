@@ -1,0 +1,54 @@
+<%- include('header') -%>
+
+<h1><%= (typeof title != "undefined" ? title : "") %></h1>
+
+<div class="admin">
+  <% if (list.length === 0) { %>
+    <p>Engir notendur.</p>
+  <% } %>
+    <div class="user">
+      <table style="width:50%">
+          <tr>
+            <th>Stjórnandi?</th>
+            <th>Notendanafn</th>
+            <th>Nafn</th>
+            <th>Netfang</th>
+          </tr>
+
+          <% list.forEach((user) => { %>
+          <div class="' user--admin' : '' %>">
+            <tr>
+                <% if (user.admin) { %>
+                  <td><input type="checkbox" checked></p></td>
+                <% } else { %>
+                  <td><input type="checkbox"></p></td>
+                <% } %>
+              <td><p><%= user.username %></p></td>
+              <td><p><%= user.name %></p></td> 
+              <td><p><%= user.email %></p></td>
+              <td><p>
+
+                  <div class="actions">
+                        <% if (user.updated) { %>
+                          Admin
+                        <% } else { %>
+                          <form method="post" action="/users/update">
+                            <input type="hidden" name="id" value="<%= user.id %>">
+                            <button>Uppfæra stjórnendur</button>
+                          </form>
+                        <% } %>
+                  </div> 
+                    
+                </p></td>
+              </tr>
+           </div>
+           <% }); %>
+
+        </table>
+
+      
+    </div>
+</div>
+
+
+<%- include('footer') -%></div>

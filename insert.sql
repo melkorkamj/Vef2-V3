@@ -26,7 +26,7 @@ VALUES
 INSERT INTO users
 (username, password, name, email, admin)
 VALUES
-('admin', 'YXNkZmFzZGY=', 'Admin', 'admin@example.org', true);
+('admin', '$2b$10$FjwnLawV0AMf1UsYfWdd2e2yhMQ.XNvJiFiT8haHZz1s89ENomUhm', 'Admin', 'admin@example.org', true);
 
 INSERT INTO users
 (username, password, name, email)

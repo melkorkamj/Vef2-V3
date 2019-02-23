@@ -1,6 +1,6 @@
 <%- include('header') -%>
 
-<h1>Atvinnuumsóknir</h1>
+<h1><%= (typeof title != "undefined" ? title : "") %></h1>
 
 <div class="applications">
   <% if (list.length === 0) { %>

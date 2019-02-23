@@ -5,11 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro:700" rel="stylesheet">
-    <title><%= title %></title>
+    <title><%= (typeof title != "undefined" ? title : "") %></title>
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
     <header>
 
+      <nav class="leftHeader">
+          <nav class="field">
+              <form method="post" action="/">
+                <a href="/">Atvinnuumsókn</a>
+              </form>
+          </nav>
+          <% if (locals.user) { %>
+            <nav class="field">
+                <form method="post" action="/applications">
+                  <a href="/">Umsóknir</a>
+                </form>
+            </nav>
+            <nav class="field">
+                <form method="post" action="/users">
+                  <a href="/admin">Notendur</a>
+                </form>
+            </nav>
+          <% } else { %>
+    
+            <nav class="field">
+                <form method="post" action="/login">
+                  <a href="/login">Innskráning</a>
+                </form>
+            </nav>
+            <nav class="field">
+                <form method="post" action="/register">
+                  <a href="/register">Nýskráning</a>
+                </form>
+            </nav>
+          <% } %>
+        </nav>
+
+      <nav class="rightHeader">
+          <% if (locals.user) { %>
+            <p>${req.user.username}</p>
+          <p><a href="/">Útskráning</a></p>
+          <% } %>
+      </nav>
     </header>
     <main>

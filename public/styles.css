@@ -9,6 +9,28 @@
   box-sizing: inherit;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+
+.leftHeader {
+  display: flex;
+  align-content: flex-start;
+  margin: 1rem 0rem 1rem 2rem;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.user--admin {
+  background-color: #fbb;
+}
+
 html { /* stylelint-disable-line */
   box-sizing: border-box;
   overflow-x: hidden;
@@ -20,7 +42,8 @@ html { /* stylelint-disable-line */
 input,
 select,
 textarea,
-button {
+button,
+header {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
 }
@@ -141,5 +164,15 @@ button:hover {
 
   .field input {
     flex: 1;
+  }
+
+  .field form {
+    margin: 0.5rem;
+  }
+
+  .field form a {
+    flex: 1;
+    margin: 0rem;
+    
   }
 }
