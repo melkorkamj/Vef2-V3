@@ -20,11 +20,11 @@
           <% if (locals.user) { %>
             <nav class="field">
                 <form method="post" action="/applications">
-                  <a href="/">Umsóknir</a>
+                  <a href="/applications">Umsóknir</a>
                 </form>
             </nav>
             <nav class="field">
-                <form method="post" action="/users">
+                <form method="post" action="/admin">
                   <a href="/admin">Notendur</a>
                 </form>
             </nav>
@@ -45,7 +45,7 @@
 
       <nav class="rightHeader">
           <% if (locals.user) { %>
-            <p>${req.user.username}</p>
+            <p><%= user.username %></p>
           <p><a href="/">Útskráning</a></p>
           <% } %>
       </nav>

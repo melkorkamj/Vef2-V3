@@ -14,7 +14,8 @@ const users = require('./users');
 
 const app = express();
 
-const sessionSecret = process.env.SESSION_SECRET;
+// const sessionSecret = process.env.SESSION_SECRET;
+const sessionSecret = 'test';
 
 if (!sessionSecret) {
   console.error('Add SESSION_SECRET to .env');
@@ -32,7 +33,7 @@ app.use(session({
   secret: sessionSecret,
   resave: false,
   saveUninitialized: false,
-  maxAge: 20 * 1000,
+  maxAge: 20 * 10000,
 }));
 
 /**
@@ -51,10 +52,7 @@ async function strat(username, password, done) {
     if (!user) {
       return false;
     }
-    console.log("user:" + user);
-
     const passwordValid = await users.comparePasswords(password, user);
-    console.log("Password valid?" + passwordValid);
     done(null, passwordValid);
   } catch (err) {
     done(null, err);
@@ -83,14 +81,11 @@ passport.deserializeUser(async (id, done) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Gott að skilgreina eitthvað svona til að gera user hlut aðgengilegan í
-// viewum ef við erum að nota þannig
+// Til að geta notað user í view-um
 app.use((req, res, next) => {
   if (req.isAuthenticated()) {
-    // getum núna notað user í viewum
     res.locals.user = req.user;
   }
-
   next();
 });
 

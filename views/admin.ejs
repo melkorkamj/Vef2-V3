@@ -6,49 +6,36 @@
   <% if (list.length === 0) { %>
     <p>Engir notendur.</p>
   <% } %>
-    <div class="user">
-      <table style="width:50%">
-          <tr>
+  <form method="post" action="/admin/update">
+    <table style="width:50%">
+      <tr>
+          <% if (locals.user.admin) { %>
             <th>Stjórnandi?</th>
-            <th>Notendanafn</th>
-            <th>Nafn</th>
-            <th>Netfang</th>
-          </tr>
-
-          <% list.forEach((user) => { %>
-          <div class="' user--admin' : '' %>">
-            <tr>
-                <% if (user.admin) { %>
-                  <td><input type="checkbox" checked></p></td>
-                <% } else { %>
-                  <td><input type="checkbox"></p></td>
-                <% } %>
-              <td><p><%= user.username %></p></td>
-              <td><p><%= user.name %></p></td> 
-              <td><p><%= user.email %></p></td>
-              <td><p>
-
-                  <div class="actions">
-                        <% if (user.updated) { %>
-                          Admin
-                        <% } else { %>
-                          <form method="post" action="/users/update">
-                            <input type="hidden" name="id" value="<%= user.id %>">
-                            <button>Uppfæra stjórnendur</button>
-                          </form>
-                        <% } %>
-                  </div> 
-                    
-                </p></td>
-              </tr>
-           </div>
-           <% }); %>
-
-        </table>
-
-      
-    </div>
+          <% } %>
+        <th>Notendanafn</th>
+        <th>Nafn</th>
+        <th>Netfang</th>
+      </tr>
+      <% list.forEach((user) => { %>
+        <tr>
+            <% if (locals.user.admin) { %>
+              <% if (user.admin) { %>
+                <td><input type="checkbox" checked></td>
+              <% } else { %>
+                <td><input type="checkbox"></td>
+              <% } %>
+            <% } %>
+          <td><p><%= user.username %></p></td>
+          <td><p><%= user.name %></p></td> 
+          <td><p><%= user.email %></p></td>
+        </tr>
+      <% }); %>
+    </table>
+    <% if (locals.user.admin) { %>
+      <input type="hidden" name="id" value="<%= user.id %>">
+      <button>Uppfæra stjórnendur</button>
+    <% } %>
+  </form>
 </div>
-
 
 <%- include('footer') -%></div>

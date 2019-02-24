@@ -155,7 +155,7 @@ async function formPost(req, res) {
     verify,
   };
 
-  await bcrypt.hash('password', 5, function(err, hash) {
+  await bcrypt.hash(data.password, 5, (err, hash) => {
     insertUsr({
       name,
       email,
