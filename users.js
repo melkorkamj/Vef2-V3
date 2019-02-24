@@ -1,6 +1,10 @@
 const bcrypt = require('bcrypt');
 const { selectUsr } = require('./db');
 
+/**
+ * Ósamstillt fall sem finnur notanda eftir notandanafni hans
+ * @param {string} username notandanafn
+ */
 async function findByUsername(username) {
   const db = await selectUsr();
   // eslint-disable-next-line no-plusplus
@@ -12,6 +16,11 @@ async function findByUsername(username) {
   }
   return 0;
 }
+
+/**
+ * Ósamstillt fall sem finnur notanda eftir auðkenni hans
+ * @param {int} id auðkenning notanda
+ */
 async function findById(id) {
   const db = await selectUsr();
   // eslint-disable-next-line no-plusplus
@@ -22,6 +31,13 @@ async function findById(id) {
   }
   return 0;
 }
+
+/**
+ * Ósamstillt fall sem ber saman lykilorðin tvö sem slegin
+ * eru inn
+ * @param {string} password lykilorð notanda
+ * @param {object} user hlutur sem inniheldur upplýsingar notanda
+ */
 async function comparePasswords(password, user) {
   const ok = await bcrypt.compare(password, user.password);
   if (ok) {

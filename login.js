@@ -20,6 +20,11 @@ function form(req, res) {
   res.render('login', data);
 }
 
+/**
+ * Fall sem redirectar á /admin
+ * @param {*} req Request hlutur
+ * @param {*} res REsponse hlutur
+ */
 function admin(req, res) {
   return res.render('admin');
 }

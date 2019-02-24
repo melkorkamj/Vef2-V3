@@ -31,7 +31,7 @@ function sanitizeXss(fieldName) {
   };
 }
 
-// Fylki af öllum validations fyrir umsókn
+// Fylki af öllum validations fyrir notanda
 const validations = [
   check('name')
     .isLength({ min: 1 })
@@ -59,7 +59,7 @@ const validations = [
 
 ];
 
-// Fylki af öllum hreinsunum fyrir umsókn
+// Fylki af öllum hreinsunum fyrir notanda
 const sanitazions = [
   sanitize('name').trim().escape(),
   sanitizeXss('name'),
@@ -72,7 +72,7 @@ const sanitazions = [
 ];
 
 /**
- * Route handler fyrir form umsóknar.
+ * Route handler fyrir form notanda.
  *
  * @param {object} req Request hlutur
  * @param {object} res Response hlutur
@@ -93,7 +93,7 @@ function form(req, res) {
 }
 
 /**
- * Route handler sem athugar stöðu á umsókn og birtir villur ef einhverjar,
+ * Route handler sem athugar stöðu á notanda og birtir villur ef einhverjar,
  * sendir annars áfram í næsta middleware.
  *
  * @param {object} req Request hlutur
@@ -135,7 +135,7 @@ function showErrors(req, res, next) {
 
 /**
  * Ósamstilltur route handler sem vistar gögn í gagnagrunn og sendir
- * á þakkarsíðu
+ * á innskráningarsíðu
  *
  * @param {object} req Request hlutur
  * @param {object} res Response hlutur

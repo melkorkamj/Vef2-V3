@@ -14,8 +14,7 @@ const users = require('./users');
 
 const app = express();
 
-// const sessionSecret = process.env.SESSION_SECRET;
-const sessionSecret = 'test';
+const sessionSecret = process.env.SESSION_SECRET;
 
 if (!sessionSecret) {
   console.error('Add SESSION_SECRET to .env');
@@ -89,6 +88,8 @@ app.use((req, res, next) => {
   next();
 });
 
+// Athuga hvort að notandi sé innskráður þegar
+// hann ýtir á síðu sem krefst innskráningar
 function ensureLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
@@ -115,7 +116,6 @@ app.use('/register', register);
 app.use('/login', login);
 app.use('/applications', ensureLoggedIn, applications);
 app.use('/admin', admin);
-
 
 function errorHandler(error, req, res, next) { // eslint-disable-line
   console.error(error);
