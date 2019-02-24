@@ -23,21 +23,6 @@ async function users(req, res) {
   return res.render('admin', data);
 }
 
-async function table(req, res) {
-    let isAdmin = false;
-    if (req.isAuthenticated()) {
-      isAdmin = res.locals.user.admin;
-    }
-    const data = {
-      title: 'Notendur',
-      userdata: await selectUsr(),
-      isAuthenticated: req.isAuthenticated(),
-      isAdmin,
-    };
-    return res.render('admin', data);
-  }
-  
-
 /**
  * Ósamstilltur route handler sem vinnur úr umsókn.
  *
