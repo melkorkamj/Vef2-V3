@@ -14,30 +14,30 @@
       <nav class="leftHeader">
           <nav class="field">
               <form method="post" action="/">
-                <a href="/">Atvinnuumsókn</a>
+                <a href="/" class="<%= title==='Atvinnuumsókn' ? 'current'  : '' %>">Atvinnuumsókn</a>
               </form>
           </nav>
           <% if (locals.user) { %>
             <nav class="field">
                 <form method="post" action="/applications">
-                  <a href="/applications">Umsóknir</a>
+                  <a href="/applications" class="<%= title==='Umsóknir' ? 'current'  : '' %>">Umsóknir</a>
                 </form>
             </nav>
             <nav class="field">
                 <form method="post" action="/admin">
-                  <a href="/admin">Notendur</a>
+                  <a href="/admin" class="<%= title==='Notendur' ? 'current'  : '' %>">Notendur</a>
                 </form>
             </nav>
           <% } else { %>
     
             <nav class="field">
                 <form method="post" action="/login">
-                  <a href="/login">Innskráning</a>
+                  <a href="/login" class="<%= title==='Innskráning' ? 'current'  : '' %>">Innskráning</a>
                 </form>
             </nav>
             <nav class="field">
                 <form method="post" action="/register">
-                  <a href="/register">Nýskráning</a>
+                  <a href="/register" class="<%= title==='Nýskráning' ? 'current'  : '' %>">Nýskráning</a>
                 </form>
             </nav>
           <% } %>
