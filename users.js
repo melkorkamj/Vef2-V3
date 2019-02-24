@@ -4,7 +4,7 @@ const { selectUsr } = require('./db');
 async function findByUsername(username) {
   const db = await selectUsr();
   // eslint-disable-next-line no-plusplus
-  for (let i = 0; i <db.length; i++) {
+  for (let i = 0; i < db.length; i++) {
     // eslint-disable-next-line no-undef
     if (username === db[i].username) {
       return db[i];
@@ -25,14 +25,13 @@ async function findById(id) {
 async function comparePasswords(password, user) {
   const ok = await bcrypt.compare(password, user.password);
   if (ok) {
-    console.log("sama password");
     return user;
   }
   return false;
 }
 
 module.exports = {
-    findByUsername,
-    findById,
-    comparePasswords,
+  findByUsername,
+  findById,
+  comparePasswords,
 };

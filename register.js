@@ -53,6 +53,10 @@ const validations = [
     .isLength({ min: 8 })
     .withMessage('Lykilorð verður að vera a.m.k. 8 stafir'),
 
+  check('verify')
+    .isLength({ min: 8 })
+    .withMessage('Lykilorð verður að vera a.m.k. 8 stafir'),
+
 ];
 
 // Fylki af öllum hreinsunum fyrir umsókn
@@ -168,7 +172,7 @@ async function formPost(req, res) {
 }
 
 function login(req, res) {
-    return res.render('login');
+  return res.render('login');
 }
 
 router.get('/', form);

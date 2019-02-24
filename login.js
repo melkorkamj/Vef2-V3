@@ -1,7 +1,4 @@
-const xss = require('xss');
 const express = require('express');
-const { check, validationResult } = require('express-validator/check');
-const { sanitize } = require('express-validator/filter');
 
 const router = express.Router();
 

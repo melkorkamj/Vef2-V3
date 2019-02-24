@@ -6,8 +6,8 @@ CREATE TABLE applications (
   text text,
   job varchar(64) not null,
   processed boolean default false,
-  created timestamp with time zone not null default current_timestamp,
-  updated timestamp with time zone not null default current_timestamp
+  created timestamp not null DEFAULT current_timestamp,
+  updated timestamp not null DEFAULT current_timestamp
 );
 
 CREATE TABLE users (

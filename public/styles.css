@@ -15,10 +15,34 @@ header {
   padding-top: 1rem;
 }
 
+.current{
+  font-weight: bold;
+    text-decoration: underline;
+    color: black;
+}
+
+header.field.active{
+  font-weight: bold;
+    text-decoration: underline;
+    color: black;
+}
+
+header.nav.form.a.active {
+    font-weight: bold;
+    text-decoration: underline;
+    color: black;
+}
+
 .leftHeader {
   display: flex;
   align-content: flex-start;
   margin: 1rem 0rem 1rem 2rem;
+}
+
+a.activePage {
+  font-weight: bold;
+  text-decoration: underline;
+  color: black;
 }
 
 td, th {

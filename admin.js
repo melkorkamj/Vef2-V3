@@ -1,7 +1,8 @@
 const express = require('express');
 
-const { selectUsr, updateUsr } = require('./db');
+const { selectUsr, updateUsr, clearAdminUsr } = require('./db');
 const { catchErrors } = require('./utils');
+
 const router = express.Router();
 
 /**
@@ -22,6 +23,21 @@ async function users(req, res) {
   return res.render('admin', data);
 }
 
+async function table(req, res) {
+    let isAdmin = false;
+    if (req.isAuthenticated()) {
+      isAdmin = res.locals.user.admin;
+    }
+    const data = {
+      title: 'Notendur',
+      userdata: await selectUsr(),
+      isAuthenticated: req.isAuthenticated(),
+      isAdmin,
+    };
+    return res.render('admin', data);
+  }
+  
+
 /**
  * Ósamstilltur route handler sem vinnur úr umsókn.
  *
@@ -30,10 +46,13 @@ async function users(req, res) {
  * @returns Redirect á `/admin`
  */
 async function updateUser(req, res) {
+  await clearAdminUsr();
   const { id } = req.body;
-
-  await updateUsr(id);
-
+  if (id) {
+    await id.forEach((userID) => {
+      updateUsr([userID]);
+    });
+  }
   return res.redirect('/admin');
 }
 

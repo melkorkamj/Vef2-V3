@@ -9,22 +9,22 @@
   <form method="post" action="/admin/update">
     <table style="width:50%">
       <tr>
-          <% if (locals.user.admin) { %>
+          <% if (locals.user && locals.user.admin) { %>
             <th>Stjórnandi?</th>
           <% } %>
         <th>Notendanafn</th>
         <th>Nafn</th>
         <th>Netfang</th>
       </tr>
+
       <% list.forEach((user) => { %>
         <tr>
             <% if (locals.user.admin) { %>
-              <% if (user.admin) { %>
-                <td><input type="checkbox" checked></td>
-              <% } else { %>
-                <td><input type="checkbox"></td>
+              <td>
+              <input type="checkbox" name="id[]" value="<%= user.id %>" <%=
+              user.admin === true ? 'checked' : '' %> />
+              </td>
               <% } %>
-            <% } %>
           <td><p><%= user.username %></p></td>
           <td><p><%= user.name %></p></td> 
           <td><p><%= user.email %></p></td>
@@ -32,8 +32,8 @@
       <% }); %>
     </table>
     <% if (locals.user.admin) { %>
-      <input type="hidden" name="id" value="<%= user.id %>">
-      <button>Uppfæra stjórnendur</button>
+      <input type="hidden" name="id" value="user.id">
+      <button class="updateUser">Uppfæra stjórnendur</button>
     <% } %>
   </form>
 </div>

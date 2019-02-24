@@ -73,7 +73,15 @@ UPDATE users
 SET admin = true
 WHERE id = $1`;
 
-  return query(q, [id]);
+  return query(q, id);
+}
+
+async function clearAdminUsr() {
+  const q = `
+UPDATE users
+SET admin = false`;
+
+  return query(q, []);
 }
 
 module.exports = {
@@ -85,4 +93,5 @@ module.exports = {
   insertUsr,
   selectUsr,
   updateUsr,
+  clearAdminUsr,
 };

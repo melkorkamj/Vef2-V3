@@ -116,16 +116,12 @@ app.use('/login', login);
 app.use('/applications', ensureLoggedIn, applications);
 app.use('/admin', admin);
 
-/*function notFoundHandler(req, res, next) { // eslint-disable-line
-  res.status(404).render('error', { page: 'error', title: '404', error: '404 fannst ekki' });
-}*/
 
 function errorHandler(error, req, res, next) { // eslint-disable-line
   console.error(error);
   res.status(500).render('error', { page: 'error', f: 'Villa', error });
 }
 
-//app.use(notFoundHandler);
 app.use(errorHandler);
 
 app.post(
